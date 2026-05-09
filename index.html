@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#003366">
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>GMT Feedback</title>
-<meta name="theme-color" content="#003366">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
 
+/* BODY FIXED PROPERLY */
 body{
     margin:0;
     padding:0;
@@ -25,10 +27,17 @@ body{
     align-items:center;
     height:100vh;
     text-align:center;
+
     overflow:hidden;
+    overscroll-behavior:none;
 }
 
-/* animated background */
+/* DISABLE GESTURES */
+html, body{
+    touch-action: manipulation;
+}
+
+/* ANIMATION */
 @keyframes bgMove {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
@@ -74,6 +83,7 @@ body{
     transition:0.3s;
     box-shadow:0 10px 30px rgba(0,0,0,0.20);
 }
+
 .emoji:hover{
     transform:scale(1.25);
 }
@@ -99,11 +109,10 @@ body{
 }
 
 </style>
+
 </head>
-<div class="footer">
-GMT Audiology & Hearing Center • Feedback System
-</div>
-<body>
+
+<body oncontextmenu="return false">
 
 <div class="container">
 
@@ -118,11 +127,8 @@ Kindly Share Your Valuable Feedback
 <div class="emojis" id="emojiSection">
 
 <div class="emoji" onclick="sendFeedback('Excellent')">😍</div>
-
 <div class="emoji" onclick="sendFeedback('Good')">😊</div>
-
 <div class="emoji" onclick="sendFeedback('Average')">😐</div>
-
 <div class="emoji" onclick="sendFeedback('Poor')">😞</div>
 
 </div>
@@ -131,6 +137,10 @@ Kindly Share Your Valuable Feedback
 Thank You!
 </div>
 
+</div>
+
+<div class="footer">
+GMT Audiology & Hearing Center • Feedback System
 </div>
 
 <script>
@@ -142,20 +152,14 @@ fetch("https://script.google.com/macros/s/AKfycbwn2CWVOYbkFdJapak1vrHqvn39QTeCPw
 .then(response => {
 
 document.getElementById("emojiSection").style.display="none";
-
 document.querySelector(".heading").style.display="none";
-
 document.getElementById("thankyou").style.display="block";
 
 setTimeout(() => {
-
-document.getElementById("emojiSection").style.display="flex";
-
-document.querySelector(".heading").style.display="block";
-
-document.getElementById("thankyou").style.display="none";
-
-},2000);
+    document.getElementById("emojiSection").style.display="flex";
+    document.querySelector(".heading").style.display="block";
+    document.getElementById("thankyou").style.display="none";
+},1500);
 
 });
 
