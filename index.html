@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>GMT Feedback</title>
+<meta name="theme-color" content="#003366">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: system-ui, Arial, "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    background: linear-gradient(-45deg, #0a2342, #003366, #005c99, #001f33);
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* animated background */
+@keyframes bgMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.container{
+    width:100%;
+    color:white;
+}
+
+.logo{
+    font-size:38px;
+    font-weight:700;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+.heading{
+    font-size:34px;
+    font-weight:500;
+    margin-bottom:50px;
+    opacity:0.95;
+}
+
+.emojis{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.emoji{
+    font-size:110px;
+    cursor:pointer;
+    transition:0.3s;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+}
+
+.emoji:hover{
+    transform:scale(1.25);
+}
+
+#thankyou{
+    display:none;
+    font-size:60px;
+    font-weight:bold;
+    color:#00ff99;
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    0%{transform:scale(0.5);opacity:0}
+    100%{transform:scale(1);opacity:1}
+}
+
+.footer{
+    position:absolute;
+    bottom:20px;
+    font-size:14px;
+    opacity:0.6;
+}
+
+</style>
+</head>
+<div class="footer">
+GMT Audiology & Hearing Center • Feedback System
+</div>
+<body>
+
+<div class="container">
+
+<div class="logo">
+GMT Audiology & Hearing Center
+</div>
+
+<div class="heading">
+Kindly Share Your Valuable Feedback
+</div>
+
+<div class="emojis" id="emojiSection">
+
+<div class="emoji" onclick="sendFeedback('Excellent')">😍</div>
+
+<div class="emoji" onclick="sendFeedback('Good')">😊</div>
+
+<div class="emoji" onclick="sendFeedback('Average')">😐</div>
+
+<div class="emoji" onclick="sendFeedback('Poor')">😞</div>
+
+</div>
+
+<div id="thankyou">
+Thank You!
+</div>
+
+</div>
+
+<script>
+
+function sendFeedback(feedback){
+
+fetch("https://script.google.com/macros/s/AKfycbwn2CWVOYbkFdJapak1vrHqvn39QTeCPwq1EoRzjWmsnyjzOu6NzgJun8u84TGZKN0mNA/exec?feedback=" + feedback)
+
+.then(response => {
+
+document.getElementById("emojiSection").style.display="none";
+
+document.querySelector(".heading").style.display="none";
+
+document.getElementById("thankyou").style.display="block";
+
+setTimeout(() => {
+
+document.getElementById("emojiSection").style.display="flex";
+
+document.querySelector(".heading").style.display="block";
+
+document.getElementById("thankyou").style.display="none";
+
+},2000);
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
